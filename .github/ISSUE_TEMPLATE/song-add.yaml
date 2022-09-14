@@ -1,0 +1,50 @@
+name: 歌曲添加
+description: 添加鸽宝会唱但歌单中没有的歌曲
+title: '【歌曲添加】'
+labels: [ "new song" ]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 请补全标题并认真填写下方内容
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 请阅读以下注意事项，并勾选下方的确认框。
+      options:
+        - label: "我已经 <kbd>Ctrl</kbd>+<kbd>F5</kbd> 刷新并查找过，歌曲不存在于歌单中。"
+          required: true
+        - label: "我已经在 [Issue Tracker](https://github.com/boxie123/aige_song_list/issues) 中找过我要提出的问题，没有找到相同问题的ISSUE。"
+          required: true
+
+  - type: input
+    id: time
+    attributes:
+      label: 访问时间
+      description: 如 2022-09-03 20:06:04
+    validations:
+      required: true
+
+  - type: input
+    id: song_name
+    attributes:
+      label: 歌曲名称
+      description: 希望添加的歌曲名称
+    validations:
+      required: true
+
+  - type: input
+    id: song_singer
+    attributes:
+      label: 歌手名
+      description: 演唱此歌曲的歌手（原唱）名称。
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra_info
+    attributes:
+      label: 额外信息（可选）
+      description: 如：歌曲的链接？鸽宝何时演唱过？歌曲有哪些标签？

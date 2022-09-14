@@ -1,0 +1,46 @@
+name: "Update Song List"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '鸽宝歌单整理.xlsx'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: boxie123/aige_song_list
+          ref: dev
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: temp_xlsx
+
+      - name: Install poetry
+        run: pipx install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'poetry'
+
+      - name: Install Dependencies
+        run: poetry install --no-dev
+
+      - name: Run trans.py
+        run: poetry run python temp_xlsx/main.py
+
+      - run: echo hello > 鸽宝歌单整理.xlsx
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: update song list
+          path: 鸽宝歌单整理.xlsx
