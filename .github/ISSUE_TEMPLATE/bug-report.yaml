@@ -1,7 +1,7 @@
 name: 错误回报
 description: 在浏览 鸽宝歌单 的过程中遇到了错误
 title: '【错误回报】'
-labels: [ "bug?" ]
+labels: [ "bug" ]
 
 body:
   - type: markdown
